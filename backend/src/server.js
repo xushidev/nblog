@@ -19,6 +19,16 @@ app.get('*', (_, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
+// Todo: add: /models for sqlite, /lib for functions by sqlite (insert into, etc...)
+// Additional todo: create admin panel frontend
+// Need to install bcrypt, jwt, etc...
+// And create a middleware for the admin panel (where it needs to verify the jwt or it redirects to login page)
+// so basically:
+/*
+app.get('/admin', authMiddleware, (_, res) => {
+    res.sendFile(path.join(__dirname, '../admin-panel/dist/admin.html'));
+});
+ */
 
 // Server port to listen on
 app.listen(PORT, () => {
