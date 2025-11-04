@@ -20,15 +20,21 @@ app.get('*', (_, res) => {
 });
 
 // Todo: add: /models for sqlite, /lib for functions by sqlite (insert into, etc...)
-// Additional todo: create admin panel frontend
-// Need to install bcrypt, jwt, etc...
-// And create a middleware for the admin panel (where it needs to verify the jwt or it redirects to login page)
-// so basically:
-/*
-app.get('/admin', authMiddleware, (_, res) => {
-    res.sendFile(path.join(__dirname, '../admin-panel/dist/admin.html'));
-});
- */
+// Todo: add: /middleware for checking jwt token in cookies
+// Todo: add: /controllers for handling requests (get posts, add post, delete post, etc...)
+// Todo: add: /routes/db.route.js for handling sqlite related routes (need middleware to check for token)
+
+// ! Admin panel (and it's functions) can only be accessed
+// ! If the user is logged in (has a valid jwt token cookie)
+// ! Else he will be redirected by the frontend automatically to the login page
+// ! Or another page.
+
+// ? Current ENV variables used:
+// ? PORT - port to run the server on
+// ? USERNAME - admin username for login
+// ? PASSWORD - admin password for login
+// ? JWT_SECRET - secret key for signing JWT tokens
+// ? HTTPS - whether to set the secure (http/https) flag on cookies (false/true)
 
 // Server port to listen on
 app.listen(PORT, () => {
