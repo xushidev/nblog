@@ -1,5 +1,8 @@
-import { generateToken } from "../lib/utils.js";
+import { generateToken } from "../libs/utils.js";
 import md5 from "md5";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 export const login = async (req, res) => {
     // Get username and password from request body
@@ -22,7 +25,7 @@ export const login = async (req, res) => {
 
         // Generate JWT token from username and secret, and send it as a cookie
         // Using md5 hash of the username as the ID for the token
-        generateToken(md5(username), res);
+        generateToken(md5(adminUsername), res);
 
         // Send success message
         res.status(200).json({ message: "Login successful" });
@@ -35,8 +38,8 @@ export const login = async (req, res) => {
     }
 };
 
-export const logout = (_, res) => {
+export const logout = async (_, res) => {
     // Sets the cookie's max age to 0 to delete it (basically deletes it instantly)
-    res.cookies("jwt", "", {maxAge: 0});
-    res.status(200).json({ message: "Logout successful" });
+    res.cookie("jwt", "", {maxAge: 0});
+    return res.status(200).json({ message: "Logout successful" });
 };

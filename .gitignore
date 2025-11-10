@@ -25,3 +25,6 @@ dist-ssr
 
 # Enviromental variables
 .env
+
+# Database
+*.db

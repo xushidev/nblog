@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 
+import dotenv from "dotenv";
+dotenv.config();
+
 export const generateToken = (UserId, res) => {
     // Creates the token with 7 days expiry
     const token = jwt.sign({UserId}, process.env.JWT_SECRET, {
@@ -13,3 +16,4 @@ export const generateToken = (UserId, res) => {
         secure: process.env.HTTPS || false // Set to true if using https
     });
 }
+
