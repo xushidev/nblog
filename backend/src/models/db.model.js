@@ -20,14 +20,15 @@ export const createDB = async () => {
         CREATE TABLE IF NOT EXISTS posts(
             id INTEGER PRIMARY KEY,
             title TEXT NOT NULL,
-            datetime TEXT NOT NULL,
             text TEXT NOT NULL
         );
         `);
     } catch (error) {
+        // Logs the error in case there is one
         console.log('Error in creating database: ' + error);
     }
     finally {
+        // Ensures the database connection is closed
         db.close();
     }
 }
