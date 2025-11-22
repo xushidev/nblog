@@ -9,18 +9,18 @@ const execute = async (db, sql, params = []) => {
         // Since the insertion might take some time, we return a promise
         return new Promise((resolve, reject) => {
         // The database actually running the code
-        db.run(sql, params, (err) => {
+        db.run(sql, params, (err, rows) => {
             // resolves or error after finishing the job
             if (err) reject(err);
-            resolve();
+            resolve(rows);
         });
         });
     }
     // Executes normal sqlite code without insertion
     return new Promise((resolve, reject) => {
-        db.exec(sql, (err) => {
+        db.exec(sql, (err, rows) => {
         if (err) reject(err);
-        resolve();
+        resolve(rows);
         });
     });
 };
@@ -95,4 +95,56 @@ export const DeleteDB = async (id) => {
     } finally {
         db.close();
     }
+}
+
+
+// Get all the posts
+export const GetAllDB = async () => {
+    // Get the path
+    const __dirname = path.resolve();
+
+    // Explicitly opens / creates the path to the database
+    const db = new sqlite3.Database(path.join(__dirname, 'database', 'posts.db'));
+
+    let posts;
+    try {
+        // Inserts the id, title and text into the table
+        posts = await new Promise((resolve, reject) => {
+            db.all('SELECT * FROM posts', (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows);
+            });
+        });
+    } catch (error) {
+        console.log("Error in database insertion: " + error);
+    } finally {
+        db.close();
+    }
+    
+    return posts;
+}
+
+// Get a post based on ID
+export const GetDB = async (id) => {
+    // Get the path
+    const __dirname = path.resolve();
+
+    // Explicitly opens / creates the path to the database
+    const db = new sqlite3.Database(path.join(__dirname, 'database', 'posts.db'));
+
+    let post;
+    try {
+        // Inserts the id, title and text into the table
+        post = await new Promise((resolve, reject) => {
+            db.get('SELECT * FROM posts WHERE id = ?', [id], (err, row) => {
+                if (err) reject(err);
+                else resolve(row);
+            });
+        });
+    } catch (error) {
+        console.log("Error in database insertion: " + error);
+    } finally {
+        db.close();
+    }
+    return post;
 }

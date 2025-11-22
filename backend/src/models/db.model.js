@@ -18,7 +18,7 @@ export const createDB = async () => {
         // Creates the table (runs the query)
         db.exec(`
         CREATE TABLE IF NOT EXISTS posts(
-            id INTEGER PRIMARY KEY,
+            id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             text TEXT NOT NULL
         );

@@ -41,7 +41,7 @@ app.get('*', (_, res) => {
 createDB();
 
 //// add: /models for sqlite ////
-// Todo: add: /lib functions for sqlite (inserts, delete, etc...)
+//// add: /lib functions for sqlite (inserts, delete, etc...) ////
 //// add: /middleware for checking jwt token in cookies ////
 // Todo: add: /controllers for handling requests (get posts, add post, delete post, etc...)
 // Todo: add: /routes/db.route.js for handling sqlite related routes (need middleware to check for token)
