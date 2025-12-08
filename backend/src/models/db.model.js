@@ -1,5 +1,6 @@
 import sqlite3 from "sqlite3";
 import path from 'path';
+import { mkdir } from "fs";
 
 // * What does every blog post need to have?
 // ? id - STRING NOT NULL (trimmed hash)
@@ -11,6 +12,13 @@ import path from 'path';
 export const createDB = async () => {
     // Get the path
     const __dirname = path.resolve();
+
+    // Creates the directory where the database will exist in
+    mkdir(path.join(__dirname, 'database'), { recursive: true }, (err) => {
+        if (err) {
+            return console.error('Error creating database directory: ' + err);
+        }
+    });
 
     // Explicitly opens / creates the path to the database
     const db = new sqlite3.Database(path.join(__dirname, 'database', 'posts.db'));
@@ -31,4 +39,4 @@ export const createDB = async () => {
         // Ensures the database connection is closed
         db.close();
     }
-}
+};
