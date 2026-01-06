@@ -21,11 +21,11 @@ const __dirname = path.resolve();
 // Parses JSON requests payloads
 app.use(express.json());
 
+// Allows the frontend to send requests to the backend
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true })); 
+
 // Parses cookies
 app.use(cookieParser());
-
-// Allows the frontend to send requests to the backend
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/db", databaseRoutes);
@@ -43,8 +43,8 @@ createDB();
 //// add: /models for sqlite ////
 //// add: /lib functions for sqlite (inserts, delete, etc...) ////
 //// add: /middleware for checking jwt token in cookies ////
-// Todo: add: /controllers for handling requests (get posts, add post, delete post, etc...)
-// Todo: add: /routes/db.route.js for handling sqlite related routes (need middleware to check for token)
+//// add: /controllers for handling requests (get posts, add post, delete post, etc...) ////
+//// add: /routes/db.route.js for handling sqlite related routes (need middleware to check for token) ////
 
 // ! Admin panel (and it's functions) can only be accessed
 // ! If the user is logged in (has a valid jwt token cookie)

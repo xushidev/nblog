@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router"
 import MainPage from "./pages/MainPage"
 import LoginPage from "./pages/LoginPage"
 import PostPage from "./pages/PostPage"
+import { useAuthStore } from "./store/useAuthStore"
+import { useEffect } from "react"
 
 //? Blog:
 //? - MainPage (/) -> Where all the blogs are
