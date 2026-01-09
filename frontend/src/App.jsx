@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router"
-import MainPage from "./pages/MainPage"
+import { Navigate, Route, Routes } from "react-router"
+import BlogPage from "./pages/BlogPage"
 import LoginPage from "./pages/LoginPage"
 import PostPage from "./pages/PostPage"
 import { useAuthStore } from "./store/useAuthStore"
@@ -12,14 +12,15 @@ import { useEffect } from "react"
 //! Unauthenticated users cannot access /post (PostPage)
 
 function App() {
+  const { authenticated } = useAuthStore();
   return (
     <div
       className="min-h-screen bg-slate-900 relative flex items-center justify-center p-4 overflow-hidden"
     >
       <Routes>
-        <Route path="/" element={ <MainPage/> } />
+        <Route path="/" element={ <BlogPage/> } />
         <Route path="/login" element={ <LoginPage/> } />
-        <Route path="/post" element={ <PostPage/> } />
+        <Route path="/post" element={ authenticated ? <PostPage/> : <Navigate to={"/login"}/> } />
       </Routes>
     </div>
   )
