@@ -3,8 +3,12 @@ import React from 'react'
 const BlogPage = () => {
   return (
     <div>
-      {/* Top bar - Light/Dark mode switch - Post (only visible if logged in) - Login */}
+      {/* Top bar - Title - Light/Dark mode switch - Post (only visible if logged in) - Login */}
       <div>
+        <div>
+          
+        </div>
+
         <button>
           
         </button>
