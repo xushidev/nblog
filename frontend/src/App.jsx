@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage"
 import PostPage from "./pages/PostPage"
 import { useAuthStore } from "./store/useAuthStore"
 import { useEffect } from "react"
+import NavBar from "./components/NavBar"
 
 //? Blog:
 //? - MainPage (/) -> Where all the blogs are
@@ -14,9 +15,8 @@ import { useEffect } from "react"
 function App() {
   const { authenticated } = useAuthStore();
   return (
-    <div
-      className="min-h-screen bg-slate-900 relative flex items-center justify-center p-4 overflow-hidden"
-    >
+    <div>
+      <NavBar/>
       <Routes>
         <Route path="/" element={ <BlogPage/> } />
         <Route path="/login" element={ <LoginPage/> } />
