@@ -36,6 +36,9 @@ export const editBlog = async (req, res) => {
     }
 }
 
+//! Remember to remove the title and text requirement for delete
+//! The client needs simply to insert the id and have the auth token
+
 // delete, '/delete/:id'
 export const deleteBlog = async (req, res) => {
     const { title, text } = req.body;
